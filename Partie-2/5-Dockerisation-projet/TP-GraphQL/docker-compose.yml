@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  front-vue:
+    build: ./front-graphql/
+    ports:
+      - "8080:80"
+    image: lucasgoi/front-vue:1.0.0
+    container_name: front-vue
+    networks:
+      - graphql-net
+    environment:
+      VITE_GRAPHQL_URL: http://api-back:8081/graphql
+    depends_on:
+      - api-back
+
+  api-back:
+    build: ./api-graphql/
+    ports:
+      - "8081:8081"
+    image: lucasgoi/api-graphql:1.0.0
+    container_name: api-graphql
+    networks:
+      - graphql-net
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URL: mongodb://mongodb:27017
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - graphql-net
+    environment:
+      MONGO_INITDB_DATABASE: api-graphql
+    volumes:
+      - mongo_data:/data/db
+
+networks:
+  graphql-net:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local
