@@ -12,4 +12,6 @@ Ce repo est le compte rendu des différents exercices que j'ai faits, avec des e
 
 Elle est bonne.
 
-![Docker logo](https://dv495y1g0kef5.cloudfront.net/training/data_engineer_uber/img/docker.png "docker logo"){style="display: block; margin: 0 auto" }
+<div align="center" style="margin-top: 20px;">
+	<img src="https://dv495y1g0kef5.cloudfront.net/training/data_engineer_uber/img/docker.png">
+</div>
